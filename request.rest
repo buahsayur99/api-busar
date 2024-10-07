@@ -1,0 +1,260 @@
+// Create Users
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+    "email": "paatlupi@gmail.com",
+    "password": "123456",
+    "confirmasiPassword": "123456",
+    "role": "users"
+}
+
+###
+// Get All User By Email
+GET http://localhost:5000/users/all/admin@gmail.com
+
+###
+// Get User UUID By Email
+GET http://localhost:5000/users/admin@gmail.com
+
+###
+// Update User By Id
+PATCH http://localhost:5000/users/329854bb-ec15-46a7-b597-f2566425be9d
+Content-Type: application/json
+
+{
+    "password": "123",
+    "confirmasiPassword": "123"
+}
+
+###
+// Update Email By uuid
+PATCH http://localhost:5000/users/email/758bd862-a7f7-4f4d-8798-9c4e146dacce
+Content-Type: application/json
+
+{
+    "email": "paatlupi@gmail.com"
+}
+
+###
+// Delete Users By Id
+DELETE http://localhost:5000/users/329854bb-ec15-46a7-b597-f2566425be9d
+Content-Type: application/json
+
+###
+// Login User
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email": "admin@gmail.com",
+    "password": "123456"
+}
+
+###
+// Get User Me
+GET http://localhost:5000/me/6e2db6fc-293b-4d25-9f31-729f59f678c4
+
+###
+// Get User By Uuid
+GET http://localhost:5000/get/users/6e2db6fc-293b-4d25-9f31-729f59f678c4
+
+###
+// Get Address Label
+GET http://localhost:5000/label/address
+
+###
+// Create Address
+POST http://localhost:5000/label/address
+Content-Type: application/json
+
+{
+    "name":"buah"
+}
+
+###
+// Get address By uuid
+GET http://localhost:5000/address/6e2db6fc-293b-4d25-9f31-729f59f678c4
+
+###
+// Create Address
+POST http://localhost:5000/address
+Content-Type: application/json
+
+{
+    "id":"24",
+    "uuidUser": "6e2db6fc-293b-4d25-9f31-729f59f678c4",
+    "name": "joko",
+    "numberPhone": "1111111111",
+    "city": "jakarta barat",
+    "subdistrict": "Kembangan",
+    "codePos": "11610",
+    "completeAddress": "jln.bebas11111111111111111",
+    "addressLabel":"home",
+    "courierNote": ""
+}
+
+###
+// Delete Address By Id
+DELETE http://localhost:5000/address/6e2db6fc-293b-4d25-9f31-729f59f678c4
+Content-Type: application/json
+
+{
+    "id": [1,2]
+}
+
+###
+// Update address utama users By uuid
+PATCH http://localhost:5000/users/address/3bbc2661-8359-4ea2-b47d-9f10bae45a90
+Content-Type: application/json
+
+{
+    "idAddress": 1
+}
+
+###
+// Update address users By id
+PATCH http://localhost:5000/address
+Content-Type: application/json
+
+{
+    "id":"3",
+    "uuidUser": "6e2db6fc-293b-4d25-9f31-729f59f678c4",
+    "name": "joko",
+    "numberPhone": "1111111111",
+    "city": "jakarta selatan",
+    "subdistrict": "Kembangan",
+    "codePos": "11610",
+    "completeAddress": "jln.bebas11111111111111111",
+    "courierNote": ""
+}
+
+###
+// Update Address Main
+PATCH http://localhost:5000/update/main/address
+Content-Type: application/json
+
+{
+    "mainAddress":{
+        "id": 111
+    },
+    "address":{
+        "id": 4
+    }
+}
+
+###
+// Update Address Choice
+PATCH http://localhost:5000/update/choice/address
+Content-Type: application/json
+
+{
+    "choiceAddress":{
+        "id": 4
+    },
+    "address":{
+        "id": 1
+    }
+}
+
+###
+// Get product
+GET  http://localhost:5000/products
+Content-Type: application/json
+
+###
+// Get Category
+GET  http://localhost:5000/category
+Content-Type: application/json
+
+###
+// Create Category
+POST  http://localhost:5000/category
+Content-Type: application/json
+
+{
+    "name":"rempah & bumbu segar"
+}
+
+###
+// Remove Category
+DELETE http://localhost:5000/category
+Content-Type: application/json
+
+{
+    "id": [1]
+}
+
+###
+// Get Wishlist
+GET http://localhost:5000/wishlist/6e2db6fc-293b-4d25-9f31-729f59f678c4
+Content-Type: application/json
+
+###
+// Post Wishlist
+POST http://localhost:5000/add/wishlist
+Content-Type: application/json
+
+{
+    "uuidUser": "cfe2bdda-498f-4e0a-8e6c-ca5422bfcd69",
+    "idProduct": 30
+}
+
+###
+// Remove Wishlist
+DELETE http://localhost:5000/wishlist/101
+Content-Type: application/json
+
+###
+// Get Cart By Uuid user
+GET http://localhost:5000/cart/6e2db6fc-293b-4d25-9f31-729f59f678c4
+Content-Type: application/json
+
+###
+// Create Cart
+POST http://localhost:5000/cart/cfe2bdda-498f-4e0a-8e6c-ca5422bfcd69
+Content-Type: application/json
+
+{
+    "id":24,
+    "urlImage": "18b1438f-77a7-47f5-b5d7-c29692e36e9a",
+    "price": 37900,
+    "amount": 10
+}
+
+###
+// Delete Cart
+DELETE http://localhost:5000/cart/delete
+Content-Type: application/json
+
+{
+    "arrayId":[1,2,3,4,5]
+}
+
+###
+// Get One Transaction By Uuid and trancation_id
+GET http://localhost:5000/transaction/cfe2bdda-498f-4e0a-8e6c-ca5422bfcd69/TRX--xQB-yHhage3P
+Content-Type: application/json
+
+###
+// Get All Transaction By Uuid
+GET http://localhost:5000/transaction/cfe2bdda-498f-4e0a-8e6c-ca5422bfcd69
+Content-Type: application/json
+
+###
+// Update the purchase status to delivered
+PATCH http://localhost:5000/transaction/update/purchase/delivered
+Content-Type: application/json
+
+{
+    "transaction_id": "TRX-HbI8-MtLzmRMC"
+}
+
+###
+// Delete payment
+DELETE http://localhost:5000/transaction/remove/payment
+Content-Type: application/json
+
+{
+    "transaction_id": "TRX-Yc4i-nQ5T-UVT"
+}
