@@ -2,7 +2,6 @@
 import { Server } from "socket.io";
 import Carts from "../models/CartModel.js";
 import Wishlist from "../models/WishlistModel.js";
-import Pusher from "pusher";
 
 export const io = new Server({
     cors: {
@@ -45,41 +44,18 @@ export const sendWishlistDataToClient = async (uuidUsers) => {
             uuidUser: uuidUsers
         }
     });
-    console.log(wishlists)
 
-    io.emit(`${uuidUsers}-socket-wishlists`, wishlists);
+    const data = {
+        urlSocket: `${uuidUsers}-wishlist-busar`,
+        wishlists
+    }
+
+    // await sendWishlistDataToClient(req.body.uuidUser);
+    await fetch("https://gleaming-neat-swing.glitch.me/api/socket", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ data })
+    });
 }
-
-
-
-
-// const pusher = new Pusher({
-//     appId: "1863778",
-//     key: "219991e5be6e2d274d39",
-//     secret: "711b95e10105e50e8f14",
-//     cluster: "ap1", // Contoh: 'ap1'
-//     useTLS: true,
-// });
-
-// export const sendWishlistDataToClient = async (uuidUsers) => {
-//     const wishlists = await Wishlist.findAll({
-//         where: {
-//             uuidUser: uuidUsers
-//         }
-//     });
-//     console.log({ pusher: wishlists })
-
-//     // Kirim event ke Pusher dan tambahkan logging dengan then/catch
-//     pusher.trigger(
-//         "my-channel",
-//         "my-event",
-//         { message: "Test event from Vercel" }
-//         // wishlists
-//     )
-//         .then(() => {
-//             console.log('Event sent to Pusher successfully'); // Log sukses
-//         })
-//         .catch(error => {
-//             console.error('Error sending event to Pusher:', error); // Log error
-//         });
-// }

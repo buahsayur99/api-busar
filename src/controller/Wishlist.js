@@ -50,16 +50,9 @@ export const addWishlist = async (req, res) => {
             category: products.category,
             information: products.information,
         });
-        const message = "run socket"
-        // await sendWishlistDataToClient(req.body.uuidUser);
-        const response = await fetch("https://gleaming-neat-swing.glitch.me/api/socket", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ message })
-        });
 
+        await sendWishlistDataToClient(req.body.uuidUser);
+        // await sendWishlistDataToClient(req.body.uuidUser);
         return res.status(200).json({ message: "success add wishlist" });
     } catch (error) {
         return res.status(400).json({ message: error.message });
@@ -78,7 +71,7 @@ export const removeWishlist = async (req, res) => {
     try {
         await Wishlist.destroy({ where: { id: req.params.id } });
 
-        // await sendWishlistDataToClient(wishlists[0].uuidUser);
+        await sendWishlistDataToClient(wishlists[0].uuidUser);
         return res.status(200).json({ message: "success remove wishlist" });
     } catch (error) {
         return res.status(400).json({ message: error.message });
